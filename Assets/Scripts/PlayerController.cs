@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System;
+using System.Threading;
+
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
@@ -12,12 +14,11 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject loseTextObject;
 
-    private float timer = 5;
+    public float timer = 10;
     private int countToWin = 3; 
 
     private int count;
     private bool timeout = false;
-    private bool gameEnded = false;
     private float decelerationRate = 5.0f; 
     private float stopThreshold = 0.1f;  
     private Rigidbody rb;
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         if(timer >= 0){
             int minutes = Mathf.FloorToInt(timer / 60);
             int seconds = (int) timer % 60;
-            timerText.text = "Timer: " + minutes.ToString() + ":" + seconds.ToString("00");
+            timerText.text = "Time to Next Ball: " + minutes.ToString() + ":" + seconds.ToString("00");
             countText.text = "Count: " + count.ToString();
         }
         else {
@@ -92,4 +93,5 @@ public class PlayerController : MonoBehaviour
             winTextObject.SetActive(true);
         }
     }
+
 }
