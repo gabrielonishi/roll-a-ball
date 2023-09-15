@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject loseTextObject;
 
-    public float timer = 10;
-    private int countToWin = 3; 
+    private float timer = 300;
+    private int countToWin = 50; 
 
     private int count;
     private bool timeout = false;
@@ -37,17 +37,22 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if(timer >= 0){
+        if (timer >= 0)
+        {
             int minutes = Mathf.FloorToInt(timer / 60);
-            int seconds = (int) timer % 60;
-            timerText.text = "Time to Next Ball: " + minutes.ToString() + ":" + seconds.ToString("00");
-            countText.text = "Count: " + count.ToString();
+            int seconds = (int)timer % 60;
+            timerText.text = "Tempo até Amanhecer: " + minutes.ToString() + ":" + seconds.ToString("00");
         }
-        else {
-            if(count < countToWin){
+        else
+            timeout = true;
+            if(count < countToWin)
+            {
                 loseTextObject.SetActive(true);
             }
-            timeout = true;
+            else
+            {
+                winTextObject.SetActive(true);
+            }
         }
     }
 
@@ -87,11 +92,7 @@ public class PlayerController : MonoBehaviour
 
     void setCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if (count >= countToWin & !timeout)
-        {
-            winTextObject.SetActive(true);
-        }
+        countText.text = "$: " + count.ToString();
     }
 
 }

@@ -5,27 +5,37 @@ using UnityEngine;
 public class CollectibleManager : MonoBehaviour
 {
     public GameObject pickUpPrefab;
+    public GameObject enemyPrefab;
     public Vector3 minSpawnPoint = new Vector3(-11.0f, 0.0f, -21.0f);
     public Vector3 maxSpawnPoint = new Vector3(11.0f, 0.0f, 21.0f);
 
-    private static float timer = 5;
-    
-    void Start()
+    private static float pickupTimer = 5;
+    private static float enemyTimer = 10;
+
+    Vector3 GeneratePosition()
     {
-        Debug.Log("Entrou");
+        return new Vector3(
+            Random.Range(minSpawnPoint.x, maxSpawnPoint.x),
+            0.5f,
+            Random.Range(minSpawnPoint.z, maxSpawnPoint.z)
+        );
     }
     void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        pickupTimer -= Time.deltaTime;
+        enemyTimer -= Time.deltaTime;
+        if (pickupTimer <= 0)
         {
-            Vector3 randomPosition = new Vector3(
-                Random.Range(minSpawnPoint.x, maxSpawnPoint.x),
-                0.5f,
-                Random.Range(minSpawnPoint.z, maxSpawnPoint.z)
-            );
+            Vector3 randomPosition = GeneratePosition();
             Instantiate(pickUpPrefab, randomPosition, Quaternion.identity);
-            timer = 5;
+            pickupTimer = 5;
+        }
+        if (enemyTimer <= 0)
+        {
+            Debug.Log("Entrou");
+            Vector3 randomPosition = GeneratePosition();
+            Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+            enemyTimer = 10;
         }
     }
 }
