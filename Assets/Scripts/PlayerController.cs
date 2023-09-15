@@ -8,18 +8,22 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
     public TextMeshProUGUI countText;
-    private float timer = 5;
     public TextMeshProUGUI timerText;
     public GameObject winTextObject;
     public GameObject loseTextObject;
+
+    private float timer = 5;
+    private int countToWin = 3; 
+
     private int count;
-
+    private bool timeout = false;
+    private bool gameEnded = false;
+    private float decelerationRate = 5.0f; 
+    private float stopThreshold = 0.1f;  
     private Rigidbody rb;
-
     private float movementX;
     private float movementY;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,30 +42,41 @@ public class PlayerController : MonoBehaviour
             timerText.text = "Timer: " + minutes.ToString() + ":" + seconds.ToString("00");
             countText.text = "Count: " + count.ToString();
         }
-        else{
-            loseTextObject.SetActive(true);
+        else {
+            if(count < countToWin){
+                loseTextObject.SetActive(true);
+            }
+            timeout = true;
         }
     }
 
     private void OnMove(InputValue movementValue)
     {
-        if(timer >= 0){
-            Vector2 movementVector = movementValue.Get<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
-        }
+        Vector2 movementVector = movementValue.Get<Vector2>();
+        movementX = movementVector.x;
+        movementY = movementVector.y;
     }
 
     private void FixedUpdate()
     {
+
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-        rb.AddForce(movement * speed);
+        if(timeout){
+            Vector3 oppositeForce = -rb.velocity.normalized * decelerationRate;
+            rb.AddForce(oppositeForce);
+            if (rb.velocity.magnitude < stopThreshold)
+                {
+                    rb.velocity = Vector3.zero;
+                }
+        } else {
+            rb.AddForce(movement * speed);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PickUp")) 
+        if (other.gameObject.CompareTag("PickUp") & !timeout) 
         {
             other.gameObject.SetActive(false);
             count++;
@@ -72,7 +87,7 @@ public class PlayerController : MonoBehaviour
     void setCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 2)
+        if (count >= countToWin & !timeout)
         {
             winTextObject.SetActive(true);
         }
