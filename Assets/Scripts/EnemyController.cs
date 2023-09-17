@@ -15,7 +15,6 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Vector2 randomPointInCircle = UnityEngine.Random.insideUnitCircle;
         movement = new Vector3(randomPointInCircle.x, 0, randomPointInCircle.y);
-        UnityEngine.Debug.Log(movement);
     }
 
     private void FixedUpdate()
@@ -35,7 +34,6 @@ public class EnemyController : MonoBehaviour
             // movement = new Vector3(randomPointInCircle.x, 0, randomPointInCircle.y);
             Vector3 wallNormal = other.contacts[0].normal;
             movement = Vector3.Reflect(movement, wallNormal);
-            UnityEngine.Debug.Log(movement);
         }
     }
 

@@ -20,6 +20,7 @@ public class CollectibleManager : MonoBehaviour
             Random.Range(minSpawnPoint.z, maxSpawnPoint.z)
         );
     }
+
     void Update()
     {
         pickupTimer -= Time.deltaTime;
@@ -29,6 +30,7 @@ public class CollectibleManager : MonoBehaviour
             Vector3 randomPosition = GeneratePosition();
             Instantiate(pickUpPrefab, randomPosition, Quaternion.identity);
             pickupTimer = 5;
+            Debug.Log("Spawn pickup");
         }
         if (enemyTimer <= 0)
         {
