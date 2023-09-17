@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour
     public GameObject loseTextObject;
 
     private float timer = 300;
-    private int countToWin = 50; 
+    private int countToWin = 50;
 
     private int count;
     private bool timeout = false;
-    private float decelerationRate = 5.0f; 
-    private float stopThreshold = 0.1f;  
+    private float decelerationRate = 5.0f;
+    private float stopThreshold = 0.1f;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
@@ -44,8 +44,9 @@ public class PlayerController : MonoBehaviour
             timerText.text = "Tempo até Amanhecer: " + minutes.ToString() + ":" + seconds.ToString("00");
         }
         else
+        {
             timeout = true;
-            if(count < countToWin)
+            if (count < countToWin)
             {
                 loseTextObject.SetActive(true);
             }
@@ -68,21 +69,24 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-        if(timeout){
+        if (timeout)
+        {
             Vector3 oppositeForce = -rb.velocity.normalized * decelerationRate;
             rb.AddForce(oppositeForce);
             if (rb.velocity.magnitude < stopThreshold)
-                {
-                    rb.velocity = Vector3.zero;
-                }
-        } else {
+            {
+                rb.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
             rb.AddForce(movement * speed);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PickUp") & !timeout) 
+        if (other.gameObject.CompareTag("PickUp") && !timeout)
         {
             other.gameObject.SetActive(false);
             count++;
@@ -94,5 +98,4 @@ public class PlayerController : MonoBehaviour
     {
         countText.text = "$: " + count.ToString();
     }
-
 }
