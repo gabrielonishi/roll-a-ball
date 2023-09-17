@@ -9,7 +9,7 @@ public class CollectibleManager : MonoBehaviour
     public Vector3 minSpawnPoint = new Vector3(-11.0f, 0.0f, -21.0f);
     public Vector3 maxSpawnPoint = new Vector3(11.0f, 0.0f, 21.0f);
 
-    private static float pickupTimer = 5;
+    private static float pickupTimer = 3;
     private static float enemyTimer = 10;
 
     Vector3 GeneratePosition()
@@ -30,11 +30,10 @@ public class CollectibleManager : MonoBehaviour
             Vector3 randomPosition = GeneratePosition();
             Instantiate(pickUpPrefab, randomPosition, Quaternion.identity);
             pickupTimer = 5;
-            Debug.Log("Spawn pickup");
         }
+
         if (enemyTimer <= 0)
         {
-            Debug.Log("Entrou");
             Vector3 randomPosition = GeneratePosition();
             Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
             enemyTimer = 10;

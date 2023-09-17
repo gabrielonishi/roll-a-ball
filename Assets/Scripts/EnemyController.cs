@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private float terminalVelocity = 5.0f;
     private Rigidbody rb;
     private Vector3 movement;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,12 +27,11 @@ public class EnemyController : MonoBehaviour
                 rb.AddForce(movement*forceMagnitude);
             }
     }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            // Vector2 randomPointInCircle = UnityEngine.Random.insideUnitCircle;
-            // movement = new Vector3(randomPointInCircle.x, 0, randomPointInCircle.y);
             Vector3 wallNormal = other.contacts[0].normal;
             movement = Vector3.Reflect(movement, wallNormal);
         }

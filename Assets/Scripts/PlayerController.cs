@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject loseTextObject;
 
-    private float timer = 300;
-    private int countToWin = 50;
+    private float timer = 10;
+    private int countToWin = 3;
 
     private int count;
     private bool timeout = false;
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
+    private bool gameOver = false;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer >= 0)
+        if (timer >= 0 & !gameOver)
         {
             int minutes = Mathf.FloorToInt(timer / 60);
             int seconds = (int)timer % 60;
@@ -69,10 +70,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-        if (timeout)
+        if (timeout || gameOver)
         {
             Vector3 oppositeForce = -rb.velocity.normalized * decelerationRate;
             rb.AddForce(oppositeForce);
+
             if (rb.velocity.magnitude < stopThreshold)
             {
                 rb.velocity = Vector3.zero;
@@ -91,6 +93,14 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count++;
             setCountText();
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            gameOver = true;
         }
     }
 
