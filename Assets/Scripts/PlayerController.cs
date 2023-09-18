@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System;
 using System.Threading;
+using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI timerText;
     public GameObject winTextObject;
     public GameObject loseTextObject;
+
+    public AudioSource screamSound;
+    public AudioSource coinSound;
+    public AudioSource loseSound;
+    public AudioSource winSound;
+    public AudioSource backgroundSound;
 
     private float timer = 10;
     private int countToWin = 3;
@@ -25,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     private bool gameOver = false;
+    private bool playedSong = false;
 
     void Start()
     {
@@ -49,11 +57,25 @@ public class PlayerController : MonoBehaviour
             timeout = true;
             if (count < countToWin)
             {
+                
                 loseTextObject.SetActive(true);
+                if (!playedSong)
+                {
+                    loseSound.Play();
+                    backgroundSound.Stop();
+                    playedSong = true;
+                }
             }
             else
             {
+                
                 winTextObject.SetActive(true);
+                if (!playedSong)
+                {
+                    winSound.Play();
+                    backgroundSound.Stop();
+                    playedSong = true;
+                }                
             }
         }
     }
@@ -93,6 +115,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count++;
             setCountText();
+            coinSound.Play();
         }
     }
 
@@ -101,6 +124,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             gameOver = true;
+            screamSound.Play();
+            backgroundSound.Stop();
         }
     }
 
