@@ -7,13 +7,13 @@ Alguns recursos só são carregados quando se inicia o Unity. Por isso, antes de
 
 ### Sons Utilizados
 
-[Moeda Coletada](https://freesound.org/people/ProjectsU012/sounds/341695/)
-[Grito de Morte](https://freesound.org/people/Syna-Max/sounds/64940/)
-[Música de Fundo](https://freesound.org/people/xsgianni/sounds/388079/)
-[Aplausos](https://freesound.org/people/stephsinger22/sounds/52322/)
-[Derrota](https://freesound.org/people/TaranP/sounds/362204/)
+ - [Moeda Coletada](https://freesound.org/people/ProjectsU012/sounds/341695/)
+ - [Grito de Morte](https://freesound.org/people/Syna-Max/sounds/64940/)
+ - [Música de Fundo](https://freesound.org/people/xsgianni/sounds/388079/)
+ - [Aplausos](https://freesound.org/people/stephsinger22/sounds/52322/)
+ - [Derrota](https://freesound.org/people/TaranP/sounds/362204/)
 
 ### Tutoriais de Referência
-[Tutorial Oficial do Unity - Roll a Ball](https://learn.unity.com/project/roll-a-ball)
-[Adição de Sound Effects](https://www.youtube.com/watch?v=lDBIu3Elkew&ab_channel=HeizenblogGaming)
+ - [Tutorial Oficial do Unity - Roll a Ball](https://learn.unity.com/project/roll-a-ball)
+ - [Adição de Sound Effects](https://www.youtube.com/watch?v=lDBIu3Elkew&ab_channel=HeizenblogGaming)
 
