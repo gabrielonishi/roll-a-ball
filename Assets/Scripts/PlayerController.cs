@@ -6,6 +6,8 @@ using TMPro;
 using System;
 using System.Threading;
 using System.Diagnostics;
+using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,14 +17,15 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject loseTextObject;
 
+
     public AudioSource screamSound;
     public AudioSource coinSound;
     public AudioSource loseSound;
     public AudioSource winSound;
     public AudioSource backgroundSound;
 
-    private float timer = 10;
-    private int countToWin = 3;
+    private float timer = 240;
+    private int countToWin = 50;
 
     private int count;
     private bool timeout = false;
@@ -65,6 +68,7 @@ public class PlayerController : MonoBehaviour
                     backgroundSound.Stop();
                     playedSong = true;
                 }
+                loseScreen();
             }
             else
             {
@@ -75,8 +79,21 @@ public class PlayerController : MonoBehaviour
                     winSound.Play();
                     backgroundSound.Stop();
                     playedSong = true;
-                }                
+                }
+                winScreen();
             }
+        }
+
+        if (transform.position.y < -2)
+        {
+            screamSound.Play();
+            if (!playedSong)
+            {
+                loseSound.Play();
+                backgroundSound.Stop();
+                playedSong = true;
+            }
+            loseScreen();
         }
     }
 
@@ -124,6 +141,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             gameOver = true;
+            count = 0;
             screamSound.Play();
             backgroundSound.Stop();
         }
@@ -132,5 +150,21 @@ public class PlayerController : MonoBehaviour
     void setCountText()
     {
         countText.text = "$: " + count.ToString();
+    }
+
+    public void loseScreen()
+    {
+        if (!loseSound.isPlaying)
+        {
+            SceneManager.LoadScene("Lose Screen");
+        }
+    }
+
+    public void winScreen()
+    {
+        if (!winSound.isPlaying)
+        {
+            SceneManager.LoadScene("Win Screen");
+        }
     }
 }

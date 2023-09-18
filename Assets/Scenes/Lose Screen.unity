@@ -295,7 +295,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &419582222
+--- !u!1 &379247069
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,42 +303,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 419582224}
-  - component: {fileID: 419582223}
+  - component: {fileID: 379247071}
+  - component: {fileID: 379247072}
   m_Layer: 0
-  m_Name: StartManager
+  m_Name: Menu Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &419582223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419582222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd356b4e8d1946749b92d572ce98904d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &419582224
+--- !u!4 &379247071
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419582222}
+  m_GameObject: {fileID: 379247069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 290, z: 0}
+  m_LocalPosition: {x: 960, y: 690, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &379247072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379247069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd356b4e8d1946749b92d572ce98904d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &556146484
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 419582223}
+      - m_Target: {fileID: 379247072}
         m_TargetAssemblyTypeName: mainMenu, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sim, humilde
+  m_text: Tentar de Novo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 1151226358}
   - component: {fileID: 1151226357}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Lose Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,8 +738,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Isabola est\xE1 devendo $50 para o agiota e tem at\xE9 \xE0s 18:00 para
-    arranjar o dinheiro. Ajudarias?"
+  m_text: "Voc\xEA n\xE3o conseguiu ajudar a Isabola"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1034,4 +1033,4 @@ SceneRoots:
   - {fileID: 1584803056}
   - {fileID: 69730504}
   - {fileID: 310006946}
-  - {fileID: 419582224}
+  - {fileID: 379247071}
